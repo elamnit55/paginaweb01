@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Derco Center - Cabecera (clon)</title>
+  <!--<link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet"> -->
+  <style>
+    /* Reset simple */
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%;font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;}
+
+    /* Top strip */
+    .top-strip{background:#070584;color:#fff;font-size:13px;padding:6px 18px;display:flex;justify-content:flex-end;align-items:center;gap:18px}
+    .top-strip a{color:#fff;text-decoration:none;opacity:.95}
+    .top-strip .phone{display:flex;align-items:center;gap:8px;font-weight:600}
+
+    /* Main header */
+    .header{display:flex;align-items:center;justify-content:space-between;padding:18px 20px;border-bottom:4px solid #e6e6e6}
+    .brand{display:flex;align-items:center;gap:14px}
+    .brand img{height:48px;width:auto}
+    .brand .sitename{font-weight:800;color:#c5131c}
+
+    /* Navigation */
+    nav{display:flex;align-items:center;gap:22px}
+    nav ul{list-style:none;display:flex;gap:18px;align-items:center}
+    nav a{color:#39424a;text-decoration:none;font-weight:600;font-size:14px}
+    .has-dropdown{position:relative}
+    .dropdown{position:absolute;top:34px;left:0;background:#fff;border:1px solid #e6e6e6;padding:10px 12px;min-width:180px;box-shadow:0 6px 18px rgba(0,0,0,0.06);display:none}
+    .has-dropdown:focus-within .dropdown, .has-dropdown.open .dropdown{display:block}
+
+    /* Actions */
+    .actions{display:flex;align-items:center;gap:12px}
+    .btn{padding:9px 16px;border-radius:28px;font-weight:700;border:none;cursor:pointer}
+    .btn.secondary{background:#4b4b4b;color:#fff}
+    .btn.primary{background:#c5131c;color:#fff}
+
+    /* Utility (responsive) */
+    .nav-toggle{display:none;background:none;border:0;font-size:20px}
+    @media (max-width:900px){
+      nav{display:none}
+      .nav-toggle{display:block}
+      .header{padding:12px}
+      .brand img{height:40px}
+      .actions .btn{padding:8px 12px}
+    }
+
+    /* Mobile menu (simple slide down) */
+    .mobile-menu{display:none;background:#fff;border-top:1px solid #eee;padding:12px}
+    .mobile-menu.open{display:block}
+    .mobile-menu ul{list-style:none;display:flex;flex-direction:column;gap:12px}
+
+    /* Small visual tweaks */
+    .container{max-width:1200px;margin:0 auto;width:100%}
+    .icon{display:inline-block;vertical-align:middle}
+  </style>
+</head>
+<body>
+  <!-- Top strip with small links and phone -->
+  <div class="top-strip">
+    <div class="container" style="display:flex;justify-content:flex-end;gap:18px;align-items:center;">
+      <a href="#">Comunicados</a>
+      <a href="#">Novedades</a>
+      <a href="#">Contacto</a>
+      <div class="phone">📞 713-5000</div>
+    </div>
+  </div>
+
+  <!-- Main header -->
+  <header class="header container" role="banner">
+    <div style="display:flex;align-items:center;gap:16px">
+      <button class="nav-toggle" id="navToggle" aria-label="Abrir menú">☰</button>
+      <a href="#" class="brand" aria-label="Derco Center - Inicio">
+        <!-- Placeholder logo: replace with the real logo image -->
+        <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='140' height='48'><rect fill='%23c5131c' width='48' height='48' rx='6'/><text x='60' y='30' font-size='18' font-family='Inter' fill='%23333' font-weight='700'>DERCO</text></svg>" alt="Derco Center Logo" />
+      </a>
+    </div>
+
+    <nav role="navigation" aria-label="Menú principal">
+      <ul>
+        <li><a href="#">EMPRESA</a></li>
+        <li class="has-dropdown" tabindex="0">
+          <a href="#" aria-haspopup="true">MARCAS ▾</a>
+          <div class="dropdown" role="menu">
+            <a href="#">Marca 1</a><br>
+            <a href="#">Marca 2</a><br>
+            <a href="#">Marca 3</a>
+          </div>
+        </li>
+        <li><a href="#">POST VENTA</a></li>
+        <li><a href="#">TIENDAS Y TALLERES</a></li>
+        <li><a href="#">FINANCIAMIENTO</a></li>
+      </ul>
+    </nav>
+
+    <div class="actions">
+      <button class="btn secondary" id="scheduleBtn">AGENDAR CITA EN TALLER</button>
+      <button class="btn primary" id="quoteBtn">COTIZA TU AUTO</button>
+    </div>
+  </header>
+
+  <!-- Mobile menu (hidden on desktop) -->
+  <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+    <ul>
+      <li><a href="#">EMPRESA</a></li>
+      <li><a href="#">MARCAS</a></li>
+      <li><a href="#">POST VENTA</a></li>
+      <li><a href="#">TIENDAS Y TALLERES</a></li>
+      <li><a href="#">FINANCIAMIENTO</a></li>
+      <li><a href="#">AGENDAR CITA EN TALLER</a></li>
+      <li><a href="#">COTIZA TU AUTO</a></li>
+    </ul>
+  </div>
+
+  <script>
+    // JavaScript mínimo para controlar el menú móvil y acciones de botones
+    const navToggle = document.getElementById('navToggle');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const scheduleBtn = document.getElementById('scheduleBtn');
+    const quoteBtn = document.getElementById('quoteBtn');
+
+    navToggle.addEventListener('click', () => {
+      const isOpen = mobileMenu.classList.toggle('open');
+      mobileMenu.setAttribute('aria-hidden', !isOpen);
+      navToggle.setAttribute('aria-expanded', isOpen);
+    });
+
+    // Ejemplo simple de comportamiento de los botones
+    scheduleBtn.addEventListener('click', () => {
+      alert('Redirigiendo a: Agendar cita en taller (demo)');
+      // En producción: window.location.href = '/agendar-cita';
+    });
+    quoteBtn.addEventListener('click', () => {
+      alert('Redirigiendo a: Cotiza tu auto (demo)');
+      // En producción: window.location.href = '/cotizar';
+    });
+
+    // Manejo de dropdown accesible (teclado)
+    document.querySelectorAll('.has-dropdown').forEach(el => {
+      el.addEventListener('keydown', (e) => {
+        if(e.key === 'Enter' || e.key === ' '){
+          e.preventDefault();
+          el.classList.toggle('open');
+        } else if(e.key === 'Escape'){
+          el.classList.remove('open');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

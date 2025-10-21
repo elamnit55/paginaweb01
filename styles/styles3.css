@@ -1,0 +1,88 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap');
+
+/* Estilos personalizados */
+.navbar {
+  background-color: #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-brand img {
+  height: 120px;
+  margin: 0px;
+  padding: 0px;
+  border: 0px;
+}
+
+.top-bar {
+  background-color: #d32f2f;
+  color: white;
+  font-size: 14px;
+  text-align: right;
+  padding: 5px 20px;
+}
+
+.carousel-caption {
+  background: rgba(0, 0, 0, 0.5);
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.section-title {
+  text-align: center;
+  font-weight: bold;
+  color: #555;
+  margin: 40px 0 20px;
+}
+
+.card-category {
+  transition: transform 0.3s ease;
+}
+
+.card-category:hover {
+  transform: scale(1.05);
+}
+
+.card-category .card-footer {
+  background-color: #d32f2f;
+  color: white;
+  text-align: center;
+  font-weight: 600;
+}
+
+.footer {
+  background: var(--negro-derco);
+  color: #fff;
+  padding: 2rem 0;
+  text-align: center;
+}
+
+.footer a {
+  color: #fff;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.footer a:hover {
+  color: var(--rojo-derco);
+}
+
+.container {
+  width: 100%;
+  padding-right: var(--bs-gutter-x, 0.75rem);
+  padding-left: var(--bs-gutter-x, 0.75rem);
+  margin-right: 20px;
+  margin-left: 30px;
+}
+
+.card card-category {
+  height: 400px;
+  /* fija la altura del carousel */
+  object-fit: cover;
+  /* recorta sin deformar */
+}
+
+@media (max-width:768px) {
+  .carousel-img {
+    height: 220px;
+  }
+}
