@@ -1,5 +1,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap');
 
+:root {
+  --rojo-derco: #dc241f;
+  /* color rojo */
+  --negro-derco: #4d4d4d;
+  /* color negro para footer (ajusta según necesites) */
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto', sans-serif;
+}
+
 /* Estilos personalizados */
 .navbar {
   background-color: #ffffff;
@@ -14,7 +28,7 @@
 }
 
 .top-bar {
-  background-color: #d32f2f;
+  background-color: #dc241f;
   color: white;
   font-size: 14px;
   text-align: right;
@@ -43,17 +57,23 @@
 }
 
 .card-category .card-footer {
-  background-color: #d32f2f;
+  background-color: #dc241f;
   color: white;
   text-align: center;
   font-weight: 600;
 }
-
+/*
 .footer {
-  background: var(--negro-derco);
   color: #fff;
   padding: 2rem 0;
   text-align: center;
+}
+*/
+.footer {
+  background: var(--negro-derco);
+  color: #fff;
+  text-align: center;
+  padding: 1rem;
 }
 
 .footer a {
@@ -66,12 +86,36 @@
   color: var(--rojo-derco);
 }
 
+.bg-rojo {
+  background-color: #dc241f;
+  /* rojo tipo Bootstrap danger */
+  color: #fff;
+  /* texto blanco */
+  padding: 1rem;
+  /* espacio interno para que se vea el fondo */
+}
+
+.footer-logo {
+  height: 60px;      /* ajusta la altura deseada */
+  width: auto;
+  max-width: 100%;
+  object-fit: contain; /* mantiene la proporción sin recortar */
+  display: inline-block;
+}
+
+
 .container {
   width: 100%;
-  padding-right: var(--bs-gutter-x, 0.75rem);
-  padding-left: var(--bs-gutter-x, 0.75rem);
-  margin-right: 20px;
-  margin-left: 30px;
+  padding-right: 0px;
+  /*var(--bs-gutter-x, 0.75rem);*/
+  padding-left: 0px;
+  /*var(--bs-gutter-x, 0.75rem);*/
+  border-right: 0px;
+  border-left: 0px;
+
+  margin-left: auto;
+  margin-right: auto;
+
 }
 
 .card card-category {

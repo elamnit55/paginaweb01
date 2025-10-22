@@ -77,8 +77,6 @@
           <img src="imagenes/banner4.jpg" class="d-block w-100" alt="JAC">
 
         </div>
-
-
       </div>
 
       <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
@@ -94,28 +92,50 @@
 
 
   <!-- Sección de categorías -->
-  <div class="container">
-    <h3 class="section-title">¿QUÉ ESTÁS BUSCANDO?</h3>
-    <div class="row">
-      <div class="col-md-4">
-        <div class="card card-category">
-          <img src="imagenes/amarca.png" class="card-img-top" alt="Autos">
-          <div class="card-footer">Autos</div>
+  <div class="form-label">
+    <h4 class="mb-0">Registrar Consulta</h4>
+  </div>
+  <div>
+    <form id="consultaForm" novalidate>
+      <div class="row mb-3">
+        <div class="col-md-6">
+          <label for="nombre" class="form-label">Nombres</label>
+          <input type="text" class="form-control" id="nombre" required>
+          <div class="invalid-feedback">Ingrese sus datos.</div>
+        </div>
+        <div class="col-md-6">
+          <label for="fecha" class="form-label">Fecha de Consulta</label>
+          <input type="date" class="form-control" id="fecha" required>
+          <div class="invalid-feedback">Seleccione una fecha.</div>
         </div>
       </div>
-      <div class="col-md-4">
-        <div class="card card-category">
-          <img src="imagenes/amodelos.png" class="card-img-top" alt="Ventas Corporativas">
-          <div class="card-footer">Ventas Corporativas</div>
+
+      <div class="row mb-3">
+        <div class="col-md-6">
+          <label for="apellido" class="form-label">Apellidos</label>
+          <input type="text" class="form-control" id="apellido" required>
+          <div class="invalid-feedback">Ingrese sus datos.</div>
+        </div>
+        <div class="col-md-6">
+          <label for="e-mail" class="form-label">E-mail</label>
+          <input type="text" class="form-control" id="e-mail" required>
+          <div class="invalid-feedback">Ingrese su correo.</div>
         </div>
       </div>
-      <div class="col-md-4">
-        <div class="card card-category">
-          <img src="imagenes/acamiones.png" class="card-img-top" alt="Camiones y Maquinarias">
-          <div class="card-footer">Camiones y Maquinarias</div>
+
+      <div class="row mb-3">
+        <div class="col-md-6">
+          <label for="dni" class="form-label">Dni</label>
+          <input type="text" class="form-control" id="dni" required>
+          <div class="invalid-feedback">Ingrese su Dni.</div>
+        </div>
+        <div class="col-md-6">
+          <label for="departamento" class="form-label">Departamento-Region</label>
+          <input type="text" class="form-control" id="departamento" required>
+          <div class="invalid-feedback">Ingrese su departamento o region.</div>
         </div>
       </div>
-    </div>
+    </form>
   </div>
 
   <!-- FOOTER -->
@@ -148,91 +168,49 @@
         </div>
 
         <section>
-    <div class="container mt-5">
-      <div>
-        <div class="form-label">
-          <h4 class="mb-0">Registrar Consulta</h4>
-        </div>
-        <div>
-          <form id="consultaForm" novalidate>
-            <div class="row mb-3">
-              <div class="col-md-6">
-                <label for="nombre" class="form-label">Nombres</label>
-                <input type="text" class="form-control" id="nombre" required>
-                <div class="invalid-feedback">Ingrese sus datos.</div>
-              </div>
-              <div class="col-md-6">
-                <label for="fecha" class="form-label">Fecha de Consulta</label>
-                <input type="date" class="form-control" id="fecha" required>
-                <div class="invalid-feedback">Seleccione una fecha.</div>
+          <div class="container mt-5">
+            <div>
+
+
+
+              <div class="col-md-6 text-md-end">
+                <h6 class="text-danger mb-2">Contacto</h6>
+                <p class="mb-1">
+                  <a href="tel:+5117135000" class="text-white text-decoration-none">
+                    <i class="bi bi-telephone"></i> 713-5000
+                  </a>
+                </p>
+                <p class="mb-1">
+                  <a href="tel:+5117135050" class="text-white text-decoration-none">
+                    <i class="bi bi-telephone"></i> 713-5050
+                  </a>
+                </p>
+                <p class="mb-0">
+                  <a href="mailto:comunicate@derco.pe" class="text-white text-decoration-none">
+                    <i class="bi bi-envelope"></i> comunicate@derco.pe
+                  </a>
+                </p>
               </div>
             </div>
-
-            <div class="row mb-3">
+            <hr class="my-3">
+            <div class="row">
               <div class="col-md-6">
-                <label for="apellido" class="form-label">Apellidos</label>
-                <input type="text" class="form-control" id="apellido" required>
-                <div class="invalid-feedback">Ingrese sus datos.</div>
+                <p class="mb-1">
+                  <a href="libro-reclamaciones.html" class="text-white text-decoration-none">
+                    <i class="bi bi-book"></i> Libro de Reclamaciones
+                  </a>
+                </p>
+                <p class="mb-0">
+                  <a href="politica-privacidad.html" class="text-white text-decoration-none">
+                    Política de Privacidad
+                  </a>
+                </p>
               </div>
-              <div class="col-md-6">
-                <label for="e-mail" class="form-label">E-mail</label>
-                <input type="text" class="form-control" id="e-mail" required>
-                <div class="invalid-feedback">Ingrese su correo.</div>
-              </div>
-            </div>
-
-            <div class="row mb-3">
-              <div class="col-md-6">
-                <label for="dni" class="form-label">Dni</label>
-                <input type="text" class="form-control" id="dni" required>
-                <div class="invalid-feedback">Ingrese su Dni.</div>
-              </div>
-              <div class="col-md-6">
-                <label for="departamento" class="form-label">Departamento-Region</label>
-                <input type="text" class="form-control" id="departamento" required>
-                <div class="invalid-feedback">Ingrese su departamento o region.</div>
+              <div class="col-md-6 text-md-end">
+                <p class="mb-0">© 2025 Derco Perú S.A. Todos los derechos reservados.</p>
               </div>
             </div>
-            
-
-        <div class="col-md-6 text-md-end">
-          <h6 class="text-danger mb-2">Contacto</h6>
-          <p class="mb-1">
-            <a href="tel:+5117135000" class="text-white text-decoration-none">
-              <i class="bi bi-telephone"></i> 713-5000
-            </a>
-          </p>
-          <p class="mb-1">
-            <a href="tel:+5117135050" class="text-white text-decoration-none">
-              <i class="bi bi-telephone"></i> 713-5050
-            </a>
-          </p>
-          <p class="mb-0">
-            <a href="mailto:comunicate@derco.pe" class="text-white text-decoration-none">
-              <i class="bi bi-envelope"></i> comunicate@derco.pe
-            </a>
-          </p>
-        </div>
-      </div>
-      <hr class="my-3">
-      <div class="row">
-        <div class="col-md-6">
-          <p class="mb-1">
-            <a href="libro-reclamaciones.html" class="text-white text-decoration-none">
-              <i class="bi bi-book"></i> Libro de Reclamaciones
-            </a>
-          </p>
-          <p class="mb-0">
-            <a href="politica-privacidad.html" class="text-white text-decoration-none">
-              Política de Privacidad
-            </a>
-          </p>
-        </div>
-        <div class="col-md-6 text-md-end">
-          <p class="mb-0">© 2025 Derco Perú S.A. Todos los derechos reservados.</p>
-        </div>
-      </div>
-    </div>
+          </div>
   </footer>
 
 </body>
