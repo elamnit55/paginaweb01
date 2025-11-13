@@ -24,6 +24,9 @@
 
   <link rel="stylesheet" href="styles/stylesdata.css">
   <link rel="stylesheet" href="styles/styles3.css">
+  <!--Estimo para la pagina web de la empresa-->
+  <link rel="stylesheet" href="css/style4.css">
+
   <script src="script.js"></script>
 </head>
 
@@ -41,27 +44,21 @@
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu">
           <span class="navbar-toggler-icon"></span>
         </button>
+
         <div class="collapse navbar-collapse" id="menu">
           <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-            <li class="nav-item"><a class="nav-link" href="#">Empresa</a></li>
+            <li class="nav-item"><a class="nav-link" data-url="spa/misionvision.html">Empresa</a></li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Marcas</a>
-              <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Suzuki</a></li>
-                <li><a class="dropdown-item" href="#">Mazda</a></li>
-                <li><a class="dropdown-item" href="#">JAC</a></li>
-
-                <!--
+              <ul class="dropdown-menu">             
                 <li><a class="dropdown-item" data-url="spa/suzuki.html">Suzuki</a></li>
                 <li><a class="dropdown-item" data-url="spa/mazda.html">Mazda</a></li>
                 <li><a class="dropdown-item" data-url="spa/jac.html">JAC</a></li>
-                -->
               </ul>
             </li>
             <li class="nav-item"><a class="nav-link" href="#">Post Venta</a></li>
             <li class="nav-item"><a class="nav-link" href="#">Tiendas y Talleres</a></li>
             <li class="nav-item"><a class="nav-link" href="#">Financiamiento</a></li>
-
           </ul>
           <button id="btnCargarReporte" class="btn btn-outline-danger ms-3">Administracion</button>
           <button id="btnCargarSPA" class="btn btn-danger ms-2">Cotiza tu Auto</button>
@@ -319,6 +316,30 @@
     });    
   </script>
 
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  // Selecciona todos los enlaces con el atributo data-url
+  const links = document.querySelectorAll('[data-url]');
+
+  links.forEach(link => {
+    link.addEventListener('click', function(e) {
+      e.preventDefault(); // Evita el comportamiento por defecto del enlace
+
+      const url = this.getAttribute('data-url');
+      // Aquí cargas el contenido en una sección de la página (por ejemplo, en un div con id="contenido")
+      fetch(url)
+        .then(response => response.text())
+        .then(html => {
+          document.getElementById('contenido').innerHTML = html;
+        })
+        .catch(err => console.error('Error al cargar la página:', err));
+    });
+  });
+});
+</script>
+
+
+<!--
   <script>
     // Seleccionamos todos los enlaces del menú
     const enlaces = document.querySelectorAll('.dropdown-item');
@@ -353,53 +374,7 @@
     });
   </script>
 
-  <script>
-    // Array de objetos
-    let conductores = [
-      { nombres: 'Juan', apellidos: 'Cáceres', fecha: '10-05-2024', email: 'juan@hotmail.com', dni: '47698551', departamento: 'Lima', telefono: '3687458', celular: '998541271', direccion: 'Ate', placa: 'DR154', modelo: 'Toyota' },
-      { nombres: 'Luisa', apellidos: 'Paredes', fecha: '12-05-2024', email: 'luisa@gmail.com', dni: '48756214', departamento: 'Cusco', telefono: '3246587', celular: '987541230', direccion: 'Cusco Centro', placa: 'GH254', modelo: 'Hyundai' },
-      { nombres: 'Carlos', apellidos: 'Mendoza', fecha: '09-05-2024', email: 'carlos@gmail.com', dni: '47632541', departamento: 'Arequipa', telefono: '3589741', celular: '995412365', direccion: 'Cayma', placa: 'JK985', modelo: 'Kia' },
-      { nombres: 'Rosa', apellidos: 'Santos', fecha: '11-05-2024', email: 'rosa@hotmail.com', dni: '45879632', departamento: 'Piura', telefono: '3658745', celular: '994563217', direccion: 'Catacaos', placa: 'LR562', modelo: 'Nissan' }
-    ];
-
-    // Inicializar DataTable
-    $(document).ready(function () {
-      $('#tablaConductores').DataTable({
-        data: conductores,
-        columns: [
-          { data: 'nombres' },
-          { data: 'apellidos' },
-          { data: 'fecha' },
-          { data: 'email' },
-          { data: 'dni' },
-          { data: 'departamento' },
-          { data: 'telefono' },
-          { data: 'celular' },
-          { data: 'direccion' },
-          { data: 'placa' },
-          { data: 'modelo' }
-        ],
-        dom: 'Bfrtip',
-        buttons: [
-          { extend: 'excelHtml5', text: '📘 Exportar Excel', title: 'Conductores' },
-          { extend: 'pdfHtml5', text: '📕 Exportar PDF', title: 'Conductores' },
-          { extend: 'csvHtml5', text: '📗 Exportar CSV', title: 'Conductores' },
-          { extend: 'print', text: '🖨️ Imprimir' }
-        ],
-        language: {
-          search: "Buscar:",
-          lengthMenu: "Mostrar _MENU_ registros",
-          info: "Mostrando _START_ a _END_ de _TOTAL_",
-          paginate: {
-            first: "Primero",
-            last: "Último",
-            next: "Siguiente",
-            previous: "Anterior"
-          }
-        }
-      });
-    });
-  </script>
+  -->
 
 
   <!--
@@ -443,10 +418,13 @@
 -->
 
   <!-- bootstrap js link  -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+   <!-- 
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
     </script>
+      -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+   
 </body>
 
 </html>
