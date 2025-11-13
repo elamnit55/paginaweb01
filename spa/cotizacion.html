@@ -1,0 +1,21 @@
+
+
+  <section id="cot" class="container py-5 mt-5">
+    <h1>Solicitud de cotización</h1>
+    <form id="fullCotizaForm" class="row g-3">
+      <div class="col-md-6"><label class="form-label">Nombre completo</label><input id="nombre" class="form-control" required></div>
+      <div class="col-md-6"><label class="form-label">Correo electrónico</label><input id="email" type="email" class="form-control" required></div>
+      <div class="col-md-6"><label class="form-label">Modelo</label><input id="modelo" class="form-control" required></div>
+      <div class="col-md-3"><label class="form-label">Año del auto</label><input id="anio" type="number" min="1900" max="2026" class="form-control" required></div>
+      <div class="col-md-3"><label class="form-label">DNI</label><input id="dni" class="form-control" required></div>
+      <div class="col-md-6"><label class="form-label">Celular</label><input id="cel" class="form-control" required></div>
+      <div class="col-md-6"><label class="form-label">Teléfono</label><input id="tel" class="form-control"></div>
+      <div class="col-md-6"><label class="form-label">Departamento / Región</label><input id="dept" class="form-control" required></div>
+      <div class="col-md-6"><label class="form-label">Fecha de la consulta</label><input id="fecha" type="date" class="form-control" required></div>
+      <div class="col-12"><button class="btn btn-derco" type="submit">Enviar solicitud</button></div>
+    </form>
+
+    <div id="cotizaResult" class="mt-3"></div>
+  </section>
+
+

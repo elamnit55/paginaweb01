@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Lista de Conductores</title>
+
+  <!-- DataTables CSS -->
+  <link rel="stylesheet" href="https://cdn.datatables.net/2.0.8/css/dataTables.dataTables.min.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/buttons/3.0.2/css/buttons.dataTables.min.css">
+
+  <!-- DataTables JS -->
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="https://cdn.datatables.net/2.0.8/js/dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/buttons/3.0.2/js/dataTables.buttons.min.js"></script>
+  <script src="https://cdn.datatables.net/buttons/3.0.2/js/buttons.html5.min.js"></script>
+  <script src="https://cdn.datatables.net/buttons/3.0.2/js/buttons.print.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
+
+  <style>
+    body {
+      font-family: "Poppins", sans-serif;
+      background: #f4f7fb;
+      margin: 40px;
+    }
+    h1 {
+      text-align: center;
+      color: #333;
+      margin-bottom: 25px;
+    }
+    table.dataTable {
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+    }
+    .dt-buttons {
+      margin-bottom: 10px;
+      display: flex;
+      justify-content: flex-end;
+      gap: 8px;
+    }
+    .dt-button {
+      background: #0078d7 !important;
+      color: white !important;
+      border-radius: 6px !important;
+      padding: 6px 12px !important;
+      border: none !important;
+    }
+    .dt-button:hover {
+      background: #005fa3 !important;
+    }
+  </style>
+</head>
+<body>
+  <h1>Lista de Conductores Registrados</h1>
+
+  <table id="tablaConductores" class="display" style="width:100%">
+    <thead>
+      <tr>
+        <th>Nombres</th>
+        <th>Apellidos</th>
+        <th>Fecha</th>
+        <th>Email</th>
+        <th>DNI</th>
+        <th>Departamento</th>
+        <th>Teléfono</th>
+        <th>Celular</th>
+        <th>Dirección</th>
+        <th>Placa</th>
+        <th>Modelo</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+  <script>
+    // Array de objetos
+    let conductores = [
+      { nombres: 'Juan', apellidos: 'Cáceres', fecha: '10-05-2024', email: 'juan@hotmail.com', dni: '47698551', departamento: 'Lima', telefono: '3687458', celular: '998541271', direccion: 'Ate', placa: 'DR154', modelo: 'Toyota' },
+      { nombres: 'Luisa', apellidos: 'Paredes', fecha: '12-05-2024', email: 'luisa@gmail.com', dni: '48756214', departamento: 'Cusco', telefono: '3246587', celular: '987541230', direccion: 'Cusco Centro', placa: 'GH254', modelo: 'Hyundai' },
+      { nombres: 'Carlos', apellidos: 'Mendoza', fecha: '09-05-2024', email: 'carlos@gmail.com', dni: '47632541', departamento: 'Arequipa', telefono: '3589741', celular: '995412365', direccion: 'Cayma', placa: 'JK985', modelo: 'Kia' },
+      { nombres: 'Rosa', apellidos: 'Santos', fecha: '11-05-2024', email: 'rosa@hotmail.com', dni: '45879632', departamento: 'Piura', telefono: '3658745', celular: '994563217', direccion: 'Catacaos', placa: 'LR562', modelo: 'Nissan' }
+    ];
+
+    // Inicializar DataTable
+    $(document).ready(function () {
+      $('#tablaConductores').DataTable({
+        data: conductores,
+        columns: [
+          { data: 'nombres' },
+          { data: 'apellidos' },
+          { data: 'fecha' },
+          { data: 'email' },
+          { data: 'dni' },
+          { data: 'departamento' },
+          { data: 'telefono' },
+          { data: 'celular' },
+          { data: 'direccion' },
+          { data: 'placa' },
+          { data: 'modelo' }
+        ],
+        dom: 'Bfrtip',
+        buttons: [
+          { extend: 'excelHtml5', text: '📘 Exportar Excel', title: 'Conductores' },
+          { extend: 'pdfHtml5', text: '📕 Exportar PDF', title: 'Conductores' },
+          { extend: 'csvHtml5', text: '📗 Exportar CSV', title: 'Conductores' },
+          { extend: 'print', text: '🖨️ Imprimir' }
+        ],
+        language: {
+          search: "Buscar:",
+          lengthMenu: "Mostrar _MENU_ registros",
+          info: "Mostrando _START_ a _END_ de _TOTAL_",
+          paginate: {
+            first: "Primero",
+            last: "Último",
+            next: "Siguiente",
+            previous: "Anterior"
+          }
+        }
+      });
+    });
+  </script>
+</body>
+</html>

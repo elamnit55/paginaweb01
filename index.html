@@ -6,6 +6,23 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Derco Center</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+
+  <!-- DataTables CSS -->
+  <link rel="stylesheet" href="https://cdn.datatables.net/2.0.8/css/dataTables.dataTables.min.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/buttons/3.0.2/css/buttons.dataTables.min.css">
+
+  <!-- DataTables JS -->
+  <script src="https://cdn.datatables.net/2.0.8/js/dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/buttons/3.0.2/js/dataTables.buttons.min.js"></script>
+  <script src="https://cdn.datatables.net/buttons/3.0.2/js/buttons.html5.min.js"></script>
+  <script src="https://cdn.datatables.net/buttons/3.0.2/js/buttons.print.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
+
+  <link rel="stylesheet" href="styles/stylesdata.css">
   <link rel="stylesheet" href="styles/styles3.css">
   <script src="script.js"></script>
 </head>
@@ -33,14 +50,21 @@
                 <li><a class="dropdown-item" href="#">Suzuki</a></li>
                 <li><a class="dropdown-item" href="#">Mazda</a></li>
                 <li><a class="dropdown-item" href="#">JAC</a></li>
+
+                <!--
+                <li><a class="dropdown-item" data-url="spa/suzuki.html">Suzuki</a></li>
+                <li><a class="dropdown-item" data-url="spa/mazda.html">Mazda</a></li>
+                <li><a class="dropdown-item" data-url="spa/jac.html">JAC</a></li>
+                -->
               </ul>
             </li>
             <li class="nav-item"><a class="nav-link" href="#">Post Venta</a></li>
             <li class="nav-item"><a class="nav-link" href="#">Tiendas y Talleres</a></li>
             <li class="nav-item"><a class="nav-link" href="#">Financiamiento</a></li>
+
           </ul>
-          <button class="btn btn-outline-danger ms-3">Agendar Cita</button>
-          <button class="btn btn-danger ms-2">Cotiza tu Auto</button>
+          <button id="btnCargarReporte" class="btn btn-outline-danger ms-3">Administracion</button>
+          <button id="btnCargarSPA" class="btn btn-danger ms-2">Cotiza tu Auto</button>
         </div>
       </div>
     </nav>
@@ -75,7 +99,6 @@
 
         </div>
       </div>
-
       <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
         <span class="visually-hidden">Previous</span>
@@ -84,39 +107,41 @@
         <span class="carousel-control-next-icon" aria-hidden="true"></span>
         <span class="visually-hidden">Next</span>
       </button>
-
-
     </div>
   </section>
 
+  <main id="contenido">
+    <!-- Sección de categorías -->
+    <!--<section class="container-fluid categories-part">-->
 
-  <!-- Sección de categorías -->
-  <!--<section class="container-fluid categories-part">-->
-  <section class="container-fluid mb-4">
-    <!--<div class="container-fluid">-->
-    <h3 class="section-title">¿QUÉ ESTÁS BUSCANDO?</h3>
-    <div class="row">
-      <div class="col-md-4">
-        <div class="card card-category">
-          <img src="imagenes/amarca.png" class="card-img-top" alt="Autos">
-          <div class="card-footer">Autos</div>
+    <section id="spa">
+      <!-- class="container-fluid mb-4"
+      <h3 class="section-title">¿QUÉ ESTÁS BUSCANDO?</h3>
+      <div class="row">
+        <div class="col-md-4">
+          <div class="card card-category">
+            <img src="imagenes/amarca.png" class="card-img-top" alt="Autos">
+            <div class="card-footer">Autos</div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card card-category">
+            <img src="imagenes/auto-corporativo3.jpg" class="card-img-top" alt="Ventas Corporativas">
+            <div class="card-footer">Ventas Corporativas</div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card card-category">
+            <img src="imagenes/acamiones.png" class="card-img-top" alt="Camiones y Maquinarias">
+            <div class="card-footer">Camiones y Maquinarias</div>
+          </div>
         </div>
       </div>
-      <div class="col-md-4">
-        <div class="card card-category">
-          <img src="imagenes/auto-corporativo3.jpg" class="card-img-top" alt="Ventas Corporativas">
-          <div class="card-footer">Ventas Corporativas</div>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="card card-category">
-          <img src="imagenes/acamiones.png" class="card-img-top" alt="Camiones y Maquinarias">
-          <div class="card-footer">Camiones y Maquinarias</div>
-        </div>
-      </div>
-    </div>
-    <!--</div>-->
-  </section>
+-->
+    </section>
+  </main>
+
+
   <!-- FOOTER -->
 
   <!-- ========== FOOTER ========== -->
@@ -178,10 +203,250 @@
   </footer>
 
 
+
+  <script>
+    // Cargar dinámicamente la SPA desde otra carpeta
+    fetch('spa/cards.html')
+      .then(res => res.text())
+      .then(html => {
+        document.getElementById('spa').innerHTML = html;
+        // Luego carga su JS
+        const script = document.createElement('script');
+        script.src = 'spa/app.js';
+        document.body.appendChild(script);
+      });
+  </script>
+
+  <script>
+    const contenido = document.getElementById('contenido');
+
+    // Botón para cargar el contenido de la SPA
+    document.getElementById('btnCargarSPA').addEventListener('click', () => {
+      fetch('spa/formulario.html')
+        .then(res => res.text())
+        .then(html => {
+          contenido.innerHTML = html;
+        })
+        .catch(err => {
+          contenido.innerHTML = '<p>Error al cargar la SPA.</p>';
+          console.error(err);
+        });
+    });
+
+    // Botón para volver al contenido original
+    document.getElementById('btnInicio').addEventListener('click', () => {
+      contenido.innerHTML = `
+        <section>
+          <h2>Bienvenido</h2>
+          <p>Haz clic en el botón para cargar la aplicación SPA.</p>
+        </section>
+      `;
+    });
+  </script>
+
+  <script>
+    const contenidoc = document.getElementById('contenido');
+
+    // Botón para cargar el contenido de la SPA
+    document.getElementById('btnCargarReporte').addEventListener('click', () => {
+      fetch('spa/reporte.html')
+        .then(res => res.text())
+        .then(html => {
+          contenidoc.innerHTML = html;
+          setTimeout(() => {
+            // Datos de prueba (puedes cargarlos desde una API real)
+            const conductores = [
+              { nombres: 'Juan', apellidos: 'Cáceres', fecha: '10-05-2024', email: 'juan@hotmail.com', dni: '47698551', departamento: 'Lima', telefono: '3687458', celular: '998541271', direccion: 'Ate', placa: 'DR154', modelo: 'Toyota' },
+              { nombres: 'Luisa', apellidos: 'Paredes', fecha: '12-05-2024', email: 'luisa@gmail.com', dni: '48756214', departamento: 'Cusco', telefono: '3246587', celular: '987541230', direccion: 'Cusco Centro', placa: 'GH254', modelo: 'Hyundai' },
+              { nombres: 'Carlos', apellidos: 'Mendoza', fecha: '09-05-2024', email: 'carlos@gmail.com', dni: '47632541', departamento: 'Arequipa', telefono: '3589741', celular: '995412365', direccion: 'Cayma', placa: 'JK985', modelo: 'Kia' },
+              { nombres: 'Rosa', apellidos: 'Santos', fecha: '11-05-2024', email: 'rosa@hotmail.com', dni: '45879632', departamento: 'Piura', telefono: '3658745', celular: '994563217', direccion: 'Catacaos', placa: 'LR562', modelo: 'Nissan' }
+            ];
+
+            // Inicializar DataTable después de insertar el HTML
+            $('#tablaConductores').DataTable({
+              data: conductores,
+              columns: [
+                { data: 'nombres' },
+                { data: 'apellidos' },
+                { data: 'fecha' },
+                { data: 'email' },
+                { data: 'dni' },
+                { data: 'departamento' },
+                { data: 'telefono' },
+                { data: 'celular' },
+                { data: 'direccion' },
+                { data: 'placa' },
+                { data: 'modelo' }
+              ],
+              dom: 'Bfrtip',
+              buttons: [
+                { extend: 'excelHtml5', text: '📘 Exportar Excel', title: 'Conductores' },
+                { extend: 'pdfHtml5', text: '📕 Exportar PDF', title: 'Conductores' },
+                { extend: 'csvHtml5', text: '📗 Exportar CSV', title: 'Conductores' },
+                { extend: 'print', text: '🖨️ Imprimir' }
+              ],
+              language: {
+                search: "Buscar:",
+                lengthMenu: "Mostrar _MENU_ registros",
+                info: "Mostrando _START_ a _END_ de _TOTAL_",
+                paginate: {
+                  first: "Primero",
+                  last: "Último",
+                  next: "Siguiente",
+                  previous: "Anterior"
+                }
+              }
+            });
+          }, 200);
+        
+      /*###############*/
+
+    })
+      .catch(err => {
+        contenidoc.innerHTML = '<p>Error al cargar la SPA.</p>';
+        console.error(err);
+      });
+    });
+
+    // Botón para volver al contenido original
+    document.getElementById('btnInicioReporte').addEventListener('click', () => {
+      contenidoc.innerHTML = `
+        <section>
+          <h2>Bienvenido</h2>
+          <p>Haz clic en el botón para cargar la aplicación SPA.</p>
+        </section>
+      `;
+    });    
+  </script>
+
+  <script>
+    // Seleccionamos todos los enlaces del menú
+    const enlaces = document.querySelectorAll('.dropdown-item');
+    const contenidoa = document.getElementById('contenido');
+
+    enlaces.forEach(enlace => {
+      enlace.addEventListener('click', e => {
+        e.preventDefault(); // evita el salto de página
+        const url = enlace.getAttribute('data-url');
+
+        // Si la URL es externa (otra web SPA)
+        if (url.startsWith('http')) {
+          contenidoa.innerHTML = `
+            <section>
+              <iframe src="${url}" width="100%" height="700" style="border:none;"></iframe>
+            </section>
+          `;
+          return;
+        }
+
+        // Si es un archivo local (por ejemplo spa/suzuki.html)
+        fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            contenidoa.innerHTML = html;
+          })
+          .catch(err => {
+            contenidoa.innerHTML = `<p style="color:red;">Error al cargar el contenido de ${url}</p>`;
+            console.error(err);
+          });
+      });
+    });
+  </script>
+
+  <script>
+    // Array de objetos
+    let conductores = [
+      { nombres: 'Juan', apellidos: 'Cáceres', fecha: '10-05-2024', email: 'juan@hotmail.com', dni: '47698551', departamento: 'Lima', telefono: '3687458', celular: '998541271', direccion: 'Ate', placa: 'DR154', modelo: 'Toyota' },
+      { nombres: 'Luisa', apellidos: 'Paredes', fecha: '12-05-2024', email: 'luisa@gmail.com', dni: '48756214', departamento: 'Cusco', telefono: '3246587', celular: '987541230', direccion: 'Cusco Centro', placa: 'GH254', modelo: 'Hyundai' },
+      { nombres: 'Carlos', apellidos: 'Mendoza', fecha: '09-05-2024', email: 'carlos@gmail.com', dni: '47632541', departamento: 'Arequipa', telefono: '3589741', celular: '995412365', direccion: 'Cayma', placa: 'JK985', modelo: 'Kia' },
+      { nombres: 'Rosa', apellidos: 'Santos', fecha: '11-05-2024', email: 'rosa@hotmail.com', dni: '45879632', departamento: 'Piura', telefono: '3658745', celular: '994563217', direccion: 'Catacaos', placa: 'LR562', modelo: 'Nissan' }
+    ];
+
+    // Inicializar DataTable
+    $(document).ready(function () {
+      $('#tablaConductores').DataTable({
+        data: conductores,
+        columns: [
+          { data: 'nombres' },
+          { data: 'apellidos' },
+          { data: 'fecha' },
+          { data: 'email' },
+          { data: 'dni' },
+          { data: 'departamento' },
+          { data: 'telefono' },
+          { data: 'celular' },
+          { data: 'direccion' },
+          { data: 'placa' },
+          { data: 'modelo' }
+        ],
+        dom: 'Bfrtip',
+        buttons: [
+          { extend: 'excelHtml5', text: '📘 Exportar Excel', title: 'Conductores' },
+          { extend: 'pdfHtml5', text: '📕 Exportar PDF', title: 'Conductores' },
+          { extend: 'csvHtml5', text: '📗 Exportar CSV', title: 'Conductores' },
+          { extend: 'print', text: '🖨️ Imprimir' }
+        ],
+        language: {
+          search: "Buscar:",
+          lengthMenu: "Mostrar _MENU_ registros",
+          info: "Mostrando _START_ a _END_ de _TOTAL_",
+          paginate: {
+            first: "Primero",
+            last: "Último",
+            next: "Siguiente",
+            previous: "Anterior"
+          }
+        }
+      });
+    });
+  </script>
+
+
+  <!--
+ <script>
+    // Seleccionar todos los enlaces del menú
+    const enlacesb = document.querySelectorAll('.nav-link');
+    const contenidob = document.getElementById('contenido');
+
+    enlaces.forEach(enlace => {
+      enlace.addEventListener('click', e => {
+        e.preventDefault(); // evita recargar la página
+
+        const url = enlace.getAttribute('data-url');
+
+        // Caso 1: SPA externa (otro dominio → usar iframe)
+        if (url.startsWith('http')) {
+          contenidob.innerHTML = `
+            <section>
+              <iframe src="${url}" width="100%" height="700" style="border:none;"></iframe>
+            </section>
+          `;
+          return;
+        }
+
+        // Caso 2: SPA interna (archivo HTML local)
+        fetch(url)
+          .then(res => {
+            if (!res.ok) throw new Error('No se pudo cargar la sección');
+            return res.text();
+          })
+          .then(html => {
+            contenidob.innerHTML = html;
+          })
+          .catch(err => {
+            contenido.innerHTML = `<p style="color:red;">Error: ${err.message}</p>`;
+            console.error('Error al cargar contenido:', err);
+          });
+      });
+    });
+  </script>
+-->
+
   <!-- bootstrap js link  -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-    crossorigin="anonymous"></script>
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+    </script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>
